@@ -1,5 +1,7 @@
-package main
-
+// Copyright ©2013 The bíogo Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.package main
+//updted by james hennessy due to progress in the field from the last 5 years
 import (
     "fmt"
     "math"
