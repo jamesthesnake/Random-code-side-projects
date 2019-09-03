@@ -3,99 +3,122 @@ package main
 import (
 "fmt"
 "strings"
-"bufio"
-"os"
+
 )
-type Animal struct {
-	name string
+type Animals interface{
+	Eat()
+	Move()
+	Sound()
+
+
+}
+
+type animal struct {
 	food string
 	locomotion string
 	sound string
 }
 
-func (animal_type Animal) Eat() string{
-
-      return animal_type.food
+// This method means type T implements the interface I,
+// but we don't need to explicitly declare that it does so.
+func (t animal) Eat() {
+	fmt.Println(t.food)
 }
-func (animal_type Animal) Move() string{
-
-      return animal_type.locomotion
+func (t animal) Move() {
+	fmt.Println(t.locomotion)
 }
-func (animal_type Animal) Speak() string{
-
-      return animal_type.sound
+func (t animal) Sound() {
+	fmt.Println(t.sound)
+}
+type Cow struct{
+     animal 
+}
+type Bird struct{
+     animal 
+}
+type Snake struct{
+     animal 
 }
 
+func indexOf(element string, data []string) (int) {
+   for k, v := range data {
+       if element == v {
+           return k
+       }
+   }
+   return -1    //not found.
+}
 
+func main() {
 
+	var cow Cow = Cow{animal{"grass","walk","moo"}}
+	var bird Bird = Bird{animal{"worms","fly","peep"}}
+	var snake Snake = Snake{animal{"mice","slither","hiss"}}
+	var animal_slice []Animals
+	var name_slices []string
+	animal_slice= append(animal_slice,cow)
+	animal_slice= append(animal_slice,bird)
+	animal_slice= append(animal_slice,snake)
+	name_slices= append(name_slices,"cow")
+	name_slices= append(name_slices,"bird")
+	name_slices= append(name_slices,"snake")
 
+	var query string
 
-func get_animal(animal_name string) Animal  {
-	if animal_name == "cow" {
-		Cow := Animal{
-		name : "Cow",
-		food : "Grass",
-		locomotion : "Walk",
-		sound : "Moo",
-		}	
-		return Cow
-	}
-	if animal_name == "bird" {
-		Bird := Animal{
-		name : "Bird",
-		food : "Worms",
-		locomotion : "Fly",
-		sound : "Peep",
-		}	
-		return Bird
-	}
-	if animal_name == "snake" {
-		Snake := Animal{
-		name : "Snake",
-		food : "Mice",
-		locomotion : "Slither",
-		sound : "Hiss",
+	fmt.Println("Enter your request by three strings separated for an space")
+
+	var animal_type string
+	var action string
+	var currentAnimal Animals
+
+	for {
+
+		fmt.Print("> ")
+		_, err := fmt.Scanf("%s %s %s",&query, &animal_type, &action)
+
+		if err != nil {
+			fmt.Println("Invalid input. Please enter your request")
+			continue
 		}
-		return Snake
+		if query == "query"{
+
+			animal_type = strings.ToLower(animal_type)
+			action = strings.ToLower(action)
+
+			var index int = indexOf(animal_type,name_slices)
+
+			var currentAnimal = animal_slice[index]
+
+			if strings.Compare(action, "eat") == 0 {
+				currentAnimal.Eat()
+			} else if strings.Compare(action, "move") == 0 {
+				currentAnimal.Move()
+			} else if strings.Compare(action, "speak") == 0 {
+				currentAnimal.Sound()
+			} else {
+				fmt.Println("Invalid action. Please input request again.")
+				continue
+			}
+
+		}
+
+	if query == "newanimal"{
+	   if strings.Compare(action, "cow") == 0 {
+				currentAnimal = cow
+			} else if strings.Compare(action, "bird") == 0 {
+				currentAnimal = bird
+			} else if strings.Compare(action, "snake") == 0 {
+				currentAnimal = snake
+			} else {
+				fmt.Println("Invalid animal. Please input request again.")
+				continue
+			}
+	var animal_typer Animals = currentAnimal
+	name_slices = append(name_slices,animal_type)
+	animal_slice = append(animal_slice,animal_typer)
+	fmt.Println("created it")
+
 	
 	}
-	Cow := Animal{
-		name : "Cow",
-		food : "Grass",
-		locomotion : "Walk",
-		sound : "Moo",
-		}
-	return Cow
-} 
-func get_animal_output(animal_name string, animal_action string){
-	animal_type := get_animal(animal_name)
-	if animal_action == "eat"{
-	fmt.Println(animal_type.Eat())
-	}
-	if animal_action == "move"{
-	fmt.Println(animal_type.Move())
-	}
-	if animal_action == "speak"{
-	fmt.Println(animal_type.Speak())
-	}
 }
-
-func repeat_entering(){
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter text: ")
-	text, _ := reader.ReadString('\n')
-	fmt.Println(text)
-	text = strings.TrimSuffix(text, "\n")
-	s := strings.Split(text, " ")
-	strings.Replace(s[0], " ", "", -1)
-	strings.Replace(s[1], " ", "", -1)
-	animal_name := s[0]
-	animal_action := s[1]
-	get_animal_output(animal_name,animal_action)
-
-}
-func main(){
-	for 1==1{
-		repeat_entering()
-	}
 }
