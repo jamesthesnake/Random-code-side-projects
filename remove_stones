@@ -1,0 +1,31 @@
+class Solution:
+    def removeStones(self, stones):
+        X, Y = defaultdict(set), defaultdict(set)
+        for i,v in enumerate(stones):
+            X[v[0]].add(i)
+            Y[v[1]].add(i)
+        
+        G = defaultdict(set)
+        for x in X:
+            for i in X[x]:
+                G[i] |=X[x]
+        for y in Y:
+            for i in Y[y]:
+                G[i] |=Y[y]
+        
+        visited = set()
+        print(X,Y,G)
+
+        def dfs(i):
+            visited.add(i)
+            ans = 1
+            for j in G[i]:
+                if j not in visited and j!=i:
+                    ans += dfs(j)
+            return ans
+        
+        ans = 0
+        for i in range(len(stones)):
+            if i not in visited:
+                ans += dfs(i)-1
+        return ans
