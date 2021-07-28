@@ -11,7 +11,6 @@ elif CUDA_version == "10.2":
     torch_version_suffix = ""
 else:
     torch_version_suffix = "+cu110"
-
 !pip install torch==1.7.1{torch_version_suffix} torchvision==0.8.2{torch_version_suffix} -f https://download.pytorch.org/whl/torch_stable.html ftfy regex
   import torch
 import numpy as np
