@@ -37,6 +37,7 @@ function runmodel(D, G, data, 𝞗; dtst=nothing, train=false, saveinterval=20)
         i % saveinterval == 0 && generate_and_show(D, G, 100, 𝞗)  # save 10 images
     end
 end
+        #func for generation
 function generate_and_show(D,G,number,𝞗)
     Gz    = convert(Array,G(𝒩(𝞗[:ginp], number))) .> 0.5
     Gz    = reshape(Gz, (28, 28, number))
