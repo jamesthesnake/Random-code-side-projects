@@ -1,5 +1,5 @@
 use std::ascii::AsciiExt;
-
+use std::io;
 /// returns true if and only if the phrase is a palindrome
 ///
 /// # Arguments
@@ -74,8 +74,12 @@ assert!(is_palindrome("a"),"true");
 
 }
 fn main(){
+    let mut input = String::new();
 
-println!("{}",is_palindrome("a"));
-println!("heelllo");
+    io::stdin().read_line(&mut input)
+        .ok()
+        .expect("Couldn't read line");    
+
+println!("{}",is_palindrome(&input));
 }
 
