@@ -3,6 +3,7 @@ using GLMakie
 using FileIO, Downloads
 
 let
+    #damn
     earth_img = load(Downloads.download("https://upload.wikimedia.org/wikipedia/commons/9/96/NASA_bathymetric_world_map.jpg"))
     function sphere(; r = 1.0, n = 32)
         θ = LinRange(0, π, n)
