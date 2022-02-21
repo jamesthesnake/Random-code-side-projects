@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-
+//specific
 //Animal interface containg actions for each animal
 type Animal interface {
 	Eat()
