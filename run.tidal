@@ -1,0 +1,7 @@
+d1
+  $ cat[
+    note "c ds g bf", note "c ds g bf",
+    note "c f af c6", note "c f af c6"]
+  # s "test"
+
+d1 $ silence 
