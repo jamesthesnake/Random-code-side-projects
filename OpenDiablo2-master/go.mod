@@ -10,6 +10,6 @@ require (
 	github.com/stretchr/testify v1.4.0
 	golang.org/x/exp v0.0.0-20191030013958-a1ab85dbe136 // indirect
 	golang.org/x/mobile v0.0.0-20191115022231-f0c40035f2ba // indirect
-	golang.org/x/sys v0.0.0-20191115151921-52ab43148777 // indirect
+	golang.org/x/sys v0.1.0 // indirect
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
 )
